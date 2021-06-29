@@ -7,6 +7,10 @@ export const HomeContainer = styled.div`
 
   .home-container {
     &__holder {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+
       background: var(--secondary-background);
       width: 100%;
       padding: 1.5rem;

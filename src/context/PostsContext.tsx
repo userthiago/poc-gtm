@@ -1,7 +1,6 @@
-import axios from 'axios';
-import React, { createContext, useEffect, useState } from 'react';
+import React, { createContext, useState } from 'react';
 
-interface PostData {
+export interface PostData {
   id: number;
   userId: number;
   title: string;
@@ -11,6 +10,7 @@ interface PostData {
 export interface PostsContextData {
   posts: Array<PostData>;
   handleGetPost: (postId: number) => PostData | undefined;
+  handleRegisterPosts: (postList: Array<PostData>) => void;
 }
 
 export const PostsContext = createContext({} as PostsContextData);
@@ -18,18 +18,19 @@ export const PostsContext = createContext({} as PostsContextData);
 export const PostsContextProvider: React.FC = ({ children, ...props }) => {
   const [posts, setPosts] = useState<Array<PostData>>([]);
 
-  useEffect(() => {
-    axios
-      .get<Array<PostData>>('https://jsonplaceholder.typicode.com/posts')
-      .then(res => setPosts(res.data));
-  }, []);
+  function handleRegisterPosts(postList: Array<PostData>) {
+    setPosts(postList);
+  }
 
   function handleGetPost(postId: number) {
     return posts.find(post => post.id === postId);
   }
 
   return (
-    <PostsContext.Provider value={{ posts, handleGetPost }} {...props}>
+    <PostsContext.Provider
+      value={{ posts, handleGetPost, handleRegisterPosts }}
+      {...props}
+    >
       {children}
     </PostsContext.Provider>
   );
