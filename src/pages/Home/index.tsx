@@ -1,4 +1,5 @@
 import React from 'react';
+import Header from '../../components/Header';
 import ResumedPost from '../../components/ResumedPost';
 import { usePostsContext } from '../../hooks/PostsHook';
 import { useUsersContext } from '../../hooks/UsersHook';
@@ -11,15 +12,18 @@ const Home: React.FC = () => {
 
   return (
     <HomeContainer>
-      {posts.map(post => {
-        return (
-          <ResumedPost
-            key={post.id}
-            userName={handleGetUser(post.userId)?.name || ''}
-            title={post.title}
-          />
-        );
-      })}
+      <Header />
+      <main className="home-container__holder">
+        {posts.map(post => {
+          return (
+            <ResumedPost
+              key={post.id}
+              userName={handleGetUser(post.userId)?.name || ''}
+              title={post.title}
+            />
+          );
+        })}
+      </main>
     </HomeContainer>
   );
 };
