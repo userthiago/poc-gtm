@@ -28,6 +28,10 @@ export const ResumedPostContainer = styled.div`
       h2 {
         color: var(--purple-dark);
         font-size: 1.2rem;
+
+        &::first-letter {
+          text-transform: capitalize;
+        }
       }
 
       span {
