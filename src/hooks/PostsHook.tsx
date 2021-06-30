@@ -10,10 +10,11 @@ export function usePostsContext(): PostsContextData {
     );
   }
 
-  const { posts, handleGetPost } = context;
+  const { posts, handleGetPost, handleRegisterPosts } = context;
 
   return {
     posts,
     handleGetPost,
+    handleRegisterPosts,
   };
 }

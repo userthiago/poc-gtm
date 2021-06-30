@@ -5,6 +5,7 @@ export const ResumedPostContainer = styled.div`
   align-items: center;
 
   background: var(--post-background);
+  width: 100%;
   padding: 1rem 0.6rem 1rem 1rem;
   border-radius: 4px;
   cursor: pointer;

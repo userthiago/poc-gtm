@@ -1,10 +1,20 @@
 import styled from 'styled-components';
 
 export const HomeContainer = styled.div`
-  background: var(--secondary-background);
   width: 100%;
   max-width: 1024px;
-  padding: 1.5rem;
-  margin: 1rem auto;
-  border-radius: 4px;
+  margin: 0 auto;
+
+  .home-container {
+    &__holder {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+
+      background: var(--secondary-background);
+      width: 100%;
+      padding: 1.5rem;
+      border-radius: 4px;
+    }
+  }
 `;
