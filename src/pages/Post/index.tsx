@@ -63,46 +63,74 @@ const Post: React.FC = () => {
     }
   }, [handleGetPost, handleGetUser, postId]);
 
-  const getComments = useCallback(() => {
-    return comments && comments.length > maxViewComments ? (
-      <button type="button">Ver mais comentários</button>
-    ) : null;
-  }, [comments]);
+  const getName = useCallback((name: string) => {
+    return name.split('@')[0].split('_')[0];
+  }, []);
 
-  if (loading) {
-    return <Loading />;
-  }
+  const getEmail = useCallback((email: string) => {
+    return email.length <= 20 ? email : `${email.slice(0, 20)}...`;
+  }, []);
 
   return (
     <Container>
       <Header />
       <Main>
-        <Navigation>
-          <Link to="/">Home</Link>
-          <FaAngleRight />
-          <span>{postActive ? postActive.title : 'post não encontrado.'}</span>
-        </Navigation>
-        <PostContainer>
-          <div className="post-information">
-            <h1>{postActive?.title}</h1>
-            <div className="user-information">
-              <div className="user-information__name">{userActive?.name}</div>
-              <span className="user-information__username">
-                {`(${userActive?.username})`}
+        {loading ? (
+          <Loading />
+        ) : (
+          <>
+            <Navigation>
+              <Link to="/">Home</Link>
+              <FaAngleRight />
+              <span>
+                {postActive ? postActive.title : 'post não encontrado.'}
               </span>
-            </div>
-          </div>
-          <div className="post-body">{postActive?.body}</div>
-        </PostContainer>
-        <CommentsContainer>
-          <h2>Comments</h2>
-          <ul>
-            {comments?.slice(0, maxViewComments).map(comment => (
-              <li key={comment.id}>{comment.email}</li>
-            ))}
-          </ul>
-          {getComments()}
-        </CommentsContainer>
+            </Navigation>
+            <PostContainer>
+              <div className="post-information">
+                <h1>{postActive?.title}</h1>
+                <div className="user-information">
+                  <div className="user-information__name">
+                    {userActive?.name}
+                  </div>
+                  <span className="user-information__username">
+                    {`(${userActive?.username})`}
+                  </span>
+                </div>
+              </div>
+              <div className="post-body">
+                <p>{postActive?.body}</p>
+              </div>
+            </PostContainer>
+            <CommentsContainer>
+              <h2>Comments</h2>
+              <ul>
+                {comments?.slice(0, maxViewComments).map(comment => (
+                  <li key={comment.id}>
+                    <div className="post__user">
+                      <div className="user__avatar">
+                        {getName(comment.email)[0]}
+                      </div>
+                      <div className="user__holder">
+                        <div className="user__name">
+                          {getName(comment.email)}
+                        </div>
+                        <div className="user__email">{comment.email}</div>
+                      </div>
+                    </div>
+                    <div className="comment__content">
+                      <h2>{comment.name}</h2>
+                      <p>{comment.body}</p>
+                    </div>
+                  </li>
+                ))}
+              </ul>
+              {comments && comments.length > maxViewComments ? (
+                <button type="button">Show all comments</button>
+              ) : null}
+            </CommentsContainer>
+          </>
+        )}
       </Main>
     </Container>
   );

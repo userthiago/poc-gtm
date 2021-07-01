@@ -5,6 +5,9 @@ export const Container = styled.nav`
 
   ul {
     display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+
     list-style: none;
 
     li {
@@ -12,16 +15,13 @@ export const Container = styled.nav`
       height: 2.5rem;
       width: 2.5rem;
       border-radius: 50%;
+      margin: 0.25rem;
       transition: background-color 0.2s ease;
 
       font-size: 1rem;
 
       &.active {
         background: var(--purple-dark);
-      }
-
-      & + li {
-        margin-left: 1rem;
       }
 
       a {

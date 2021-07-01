@@ -11,6 +11,10 @@ export const Container = styled.header`
     font-size: 3rem;
     color: #ffffff;
     font-weight: bold;
+
+    @media (max-width: 830px) {
+      font-size: 2.5rem;
+    }
   }
 
   img {

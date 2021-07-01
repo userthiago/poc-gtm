@@ -10,4 +10,8 @@ export const Container = styled.main`
   padding: 1.5rem;
   margin-bottom: 2rem;
   border-radius: 4px;
+
+  @media (max-width: 565px) {
+    padding: 1rem;
+  }
 `;
