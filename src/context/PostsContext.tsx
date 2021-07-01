@@ -1,4 +1,5 @@
-import React, { createContext, useState, useCallback } from 'react';
+import axios from 'axios';
+import React, { createContext, useState, useCallback, useEffect } from 'react';
 
 export interface PostData {
   id: number;
@@ -38,6 +39,18 @@ export const PostsContextProvider: React.FC = ({ children, ...props }) => {
   function handleChangePage(pageNumber: number) {
     setCurrentPage(pageNumber);
   }
+
+  useEffect(() => {
+    const loadData = async () => {
+      const postsFromApi = await axios
+        .get<Array<PostData>>('https://jsonplaceholder.typicode.com/posts')
+        .then(postsRes => postsRes.data);
+
+      setPosts(postsFromApi);
+    };
+
+    loadData();
+  }, []);
 
   return (
     <PostsContext.Provider

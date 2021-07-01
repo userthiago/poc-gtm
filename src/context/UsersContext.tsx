@@ -1,4 +1,5 @@
-import React, { createContext, useState, useCallback } from 'react';
+import axios from 'axios';
+import React, { createContext, useState, useCallback, useEffect } from 'react';
 
 export interface UserData {
   id: number;
@@ -25,6 +26,18 @@ export const UsersContextProvider: React.FC = ({ children, ...props }) => {
   function handleGetUser(UserId: number) {
     return users.find(user => user.id === UserId);
   }
+
+  useEffect(() => {
+    const loadData = async () => {
+      const usersFromApi = await axios
+        .get<Array<UserData>>('https://jsonplaceholder.typicode.com/users')
+        .then(usersRes => usersRes.data);
+
+      setUsers(usersFromApi);
+    };
+
+    loadData();
+  }, []);
 
   return (
     <UsersContext.Provider

@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 
 export const Container = styled.nav`
-  margin: 2rem 0 0.5rem;
+  margin: 2rem auto 0.5rem;
 
   ul {
     display: flex;
