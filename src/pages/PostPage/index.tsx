@@ -104,7 +104,10 @@ const PostPage: React.FC = () => {
                 ))}
               </ul>
               {comments && comments.length > maxViewComments ? (
-                <Link to={`${location.pathname}/comments`}>
+                <Link
+                  id="show-more-comments"
+                  to={`${location.pathname}/comments`}
+                >
                   Show all comments
                 </Link>
               ) : null}
