@@ -50,9 +50,11 @@ export const ResumedPostContainer = styled.li`
           border-radius: 50%;
           margin-right: 1rem;
 
-          color: #ffffff;
+          color: var(--purple-super-light);
           font-size: 1.5rem;
+          line-height: 1;
           font-weight: bold;
+          text-transform: uppercase;
         }
       }
     }
