@@ -1,4 +1,4 @@
-import React, { createContext, useState } from 'react';
+import React, { createContext, useState, useCallback } from 'react';
 
 export interface UserData {
   id: number;
@@ -18,9 +18,9 @@ export const UsersContext = createContext({} as UsersContextData);
 export const UsersContextProvider: React.FC = ({ children, ...props }) => {
   const [users, setUsers] = useState<Array<UserData>>([]);
 
-  function handleRegisterUsers(userList: Array<UserData>) {
+  const handleRegisterUsers = useCallback((userList: Array<UserData>) => {
     setUsers(userList);
-  }
+  }, []);
 
   function handleGetUser(UserId: number) {
     return users.find(user => user.id === UserId);

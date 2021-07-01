@@ -1,5 +1,5 @@
 import React from 'react';
-import { HashRouter } from 'react-router-dom';
+import { BrowserRouter } from 'react-router-dom';
 
 import GlobalStyle from './styles/global';
 
@@ -9,14 +9,14 @@ import { UsersContextProvider } from './context/UsersContext';
 
 const App: React.FC = () => {
   return (
-    <HashRouter>
+    <BrowserRouter>
       <PostsContextProvider>
         <UsersContextProvider>
           <Routes />
         </UsersContextProvider>
       </PostsContextProvider>
       <GlobalStyle />
-    </HashRouter>
+    </BrowserRouter>
   );
 };
 

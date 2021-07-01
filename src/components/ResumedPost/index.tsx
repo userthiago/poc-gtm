@@ -4,7 +4,7 @@ import { FaAngleRight } from 'react-icons/fa';
 
 import { ResumedPostContainer } from './styles';
 
-interface ResumedPostProps extends HTMLAttributes<HTMLDivElement> {
+interface ResumedPostProps extends HTMLAttributes<HTMLLIElement> {
   userName: string;
   title: string;
 }

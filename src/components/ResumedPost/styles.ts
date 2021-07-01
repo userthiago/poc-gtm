@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 
-export const ResumedPostContainer = styled.div`
+export const ResumedPostContainer = styled.li`
   display: flex;
   align-items: center;
 
