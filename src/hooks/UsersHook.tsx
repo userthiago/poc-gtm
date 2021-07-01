@@ -10,10 +10,11 @@ export function useUsersContext(): UsersContextData {
     );
   }
 
-  const { users, handleGetUser, handleRegisterUsers } = context;
+  const { users, isUserLoading, handleGetUser, handleRegisterUsers } = context;
 
   return {
     users,
+    isUserLoading,
     handleGetUser,
     handleRegisterUsers,
   };
