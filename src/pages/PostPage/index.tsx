@@ -1,5 +1,5 @@
-import React, { useState, useEffect, useCallback } from 'react';
-import { Link, useParams } from 'react-router-dom';
+import React, { useState, useEffect } from 'react';
+import { Link, useLocation, useParams } from 'react-router-dom';
 import { FaAngleRight } from 'react-icons/fa';
 
 import axios from 'axios';
@@ -19,6 +19,7 @@ import {
   CommentsContainer,
 } from './styles';
 import Loading from '../../components/Loading';
+import Comment from '../../components/Comment';
 
 interface ParamsData {
   postId: string;
@@ -32,7 +33,8 @@ interface CommentsData {
   body: string;
 }
 
-const Post: React.FC = () => {
+const PostPage: React.FC = () => {
+  const location = useLocation();
   const { handleGetPost } = usePostsContext();
   const { handleGetUser } = useUsersContext();
   const { postId } = useParams<ParamsData>();
@@ -63,14 +65,6 @@ const Post: React.FC = () => {
     }
   }, [handleGetPost, handleGetUser, postId]);
 
-  const getName = useCallback((name: string) => {
-    return name.split('@')[0].split('_')[0];
-  }, []);
-
-  const getEmail = useCallback((email: string) => {
-    return email.length <= 20 ? email : `${email.slice(0, 20)}...`;
-  }, []);
-
   return (
     <Container>
       <Header />
@@ -94,7 +88,7 @@ const Post: React.FC = () => {
                     {userActive?.name}
                   </div>
                   <span className="user-information__username">
-                    {`(${userActive?.username})`}
+                    {`(${userActive?.email})`}
                   </span>
                 </div>
               </div>
@@ -106,27 +100,13 @@ const Post: React.FC = () => {
               <h2>Comments</h2>
               <ul>
                 {comments?.slice(0, maxViewComments).map(comment => (
-                  <li key={comment.id}>
-                    <div className="post__user">
-                      <div className="user__avatar">
-                        {getName(comment.email)[0]}
-                      </div>
-                      <div className="user__holder">
-                        <div className="user__name">
-                          {getName(comment.email)}
-                        </div>
-                        <div className="user__email">{comment.email}</div>
-                      </div>
-                    </div>
-                    <div className="comment__content">
-                      <h2>{comment.name}</h2>
-                      <p>{comment.body}</p>
-                    </div>
-                  </li>
+                  <Comment key={comment.id} comment={comment} />
                 ))}
               </ul>
               {comments && comments.length > maxViewComments ? (
-                <button type="button">Show all comments</button>
+                <Link to={`${location.pathname}/comments`}>
+                  Show all comments
+                </Link>
               ) : null}
             </CommentsContainer>
           </>
@@ -136,4 +116,4 @@ const Post: React.FC = () => {
   );
 };
 
-export default Post;
+export default PostPage;

@@ -13,6 +13,8 @@ export const Container = styled.div`
   display: flex;
   align-items: center;
 
+  margin: 0 auto;
+
   img {
     height: 3rem;
     width: 3rem;

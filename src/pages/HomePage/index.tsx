@@ -7,7 +7,7 @@ import Main from '../../components/Main';
 import PostsList from '../../components/PostsList';
 import Pagination from '../../components/Pagination';
 
-const Home: React.FC = () => {
+const HomePage: React.FC = () => {
   return (
     <HomeContainer>
       <Header />
@@ -19,4 +19,4 @@ const Home: React.FC = () => {
   );
 };
 
-export default Home;
+export default HomePage;

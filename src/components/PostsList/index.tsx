@@ -11,24 +11,19 @@ import { Container } from './styles';
 const PostsList: React.FC = () => {
   const { paginatedPosts } = usePostsContext();
   const { handleGetUser } = useUsersContext();
-  const [loading, setLoading] = useState(false);
 
   return (
     <Container>
-      {loading ? (
-        <Loading />
-      ) : (
-        paginatedPosts.map(post => {
-          return (
-            <ResumedPost
-              key={post.id}
-              postId={post.id}
-              userName={handleGetUser(post.userId)?.name || ''}
-              title={post.title}
-            />
-          );
-        })
-      )}
+      {paginatedPosts.map(post => {
+        return (
+          <ResumedPost
+            key={post.id}
+            postId={post.id}
+            userName={handleGetUser(post.userId)?.name || ''}
+            title={post.title}
+          />
+        );
+      })}
     </Container>
   );
 };
