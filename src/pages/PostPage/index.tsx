@@ -1,10 +1,13 @@
 import React, { useState, useEffect } from 'react';
 import { Link, useLocation, useParams } from 'react-router-dom';
+import axios from 'axios';
 import { FaAngleRight } from 'react-icons/fa';
 
-import axios from 'axios';
 import Header from '../../components/Header';
 import Main from '../../components/Main';
+import Loading from '../../components/Loading';
+import Comment from '../../components/Comment';
+import Navigation from '../../components/Navigation';
 
 import { usePostsContext } from '../../hooks/PostsHook';
 import { useUsersContext } from '../../hooks/UsersHook';
@@ -12,14 +15,7 @@ import { useUsersContext } from '../../hooks/UsersHook';
 import { PostData } from '../../context/PostsContext';
 import { UserData } from '../../context/UsersContext';
 
-import {
-  Container,
-  Navigation,
-  PostContainer,
-  CommentsContainer,
-} from './styles';
-import Loading from '../../components/Loading';
-import Comment from '../../components/Comment';
+import { Container, PostContainer, CommentsContainer } from './styles';
 
 interface ParamsData {
   postId: string;
@@ -80,6 +76,10 @@ const PostPage: React.FC = () => {
                 {postActive ? postActive.title : 'post não encontrado.'}
               </span>
             </Navigation>
+            <h2>
+              Post of
+              {` ${userActive?.name}`}
+            </h2>
             <PostContainer>
               <div className="post-information">
                 <h1>{postActive?.title}</h1>

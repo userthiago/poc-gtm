@@ -14,4 +14,8 @@ export const Container = styled.main`
   @media (max-width: 565px) {
     padding: 1rem;
   }
+
+  > h2 {
+    color: var(--purple-dark);
+  }
 `;

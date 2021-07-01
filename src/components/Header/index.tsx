@@ -1,7 +1,7 @@
 import React from 'react';
 
-import { Container } from './styles';
 import GTMLogo from '../../assets/img/gtm_logo.svg';
+import { Container } from './styles';
 
 const Header: React.FC = () => {
   return (

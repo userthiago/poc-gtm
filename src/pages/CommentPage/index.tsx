@@ -1,16 +1,18 @@
 import React, { useState, useEffect } from 'react';
 import { Link, useParams } from 'react-router-dom';
+import axios from 'axios';
 import { FaAngleRight } from 'react-icons/fa';
 
-import axios from 'axios';
 import Header from '../../components/Header';
 import Main from '../../components/Main';
-
-import { Container, Navigation, CommentsContainer } from './styles';
 import Loading from '../../components/Loading';
 import Comment from '../../components/Comment';
+import Navigation from '../../components/Navigation';
+
 import { useUsersContext } from '../../hooks/UsersHook';
 import { usePostsContext } from '../../hooks/PostsHook';
+
+import { Container, CommentsContainer } from './styles';
 
 interface ParamsData {
   postId: string;
@@ -60,8 +62,8 @@ const CommentPage: React.FC = () => {
               <FaAngleRight />
               <span>Comments</span>
             </Navigation>
+            <h2>All Comments</h2>
             <CommentsContainer>
-              <h2>All Comments</h2>
               <ul>
                 {comments?.map(comment => (
                   <Comment key={comment.id} comment={comment} />

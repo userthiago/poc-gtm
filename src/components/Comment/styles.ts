@@ -90,6 +90,7 @@ export const CommentContainer = styled.li`
       h2 {
         margin-bottom: 0.5rem;
 
+        color: var(--purple-dark);
         font-size: 1.4rem;
 
         &::first-letter {

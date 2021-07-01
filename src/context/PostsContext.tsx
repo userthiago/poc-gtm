@@ -1,5 +1,5 @@
-import axios from 'axios';
 import React, { createContext, useState, useCallback, useEffect } from 'react';
+import axios from 'axios';
 
 export interface PostData {
   id: number;
