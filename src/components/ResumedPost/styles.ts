@@ -43,7 +43,7 @@ export const ResumedPostContainer = styled.li`
           align-items: center;
           flex-shrink: 0;
 
-          background: var(--purple-light);
+          background: var(--purple-dark);
           height: 2.5rem;
           width: 2.5rem;
           padding: 0.5rem;
