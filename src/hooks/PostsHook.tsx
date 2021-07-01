@@ -12,6 +12,7 @@ export function usePostsContext(): PostsContextData {
 
   const {
     posts,
+    isPostLoading,
     postsPerPage,
     currentPage,
     handleGetPost,
@@ -22,6 +23,7 @@ export function usePostsContext(): PostsContextData {
 
   return {
     posts,
+    isPostLoading,
     postsPerPage,
     currentPage,
     handleGetPost,

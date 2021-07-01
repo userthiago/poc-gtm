@@ -35,8 +35,8 @@ interface CommentsData {
 
 const PostPage: React.FC = () => {
   const location = useLocation();
-  const { handleGetPost } = usePostsContext();
-  const { handleGetUser } = useUsersContext();
+  const { handleGetPost, isPostLoading } = usePostsContext();
+  const { handleGetUser, isUserLoading } = useUsersContext();
   const { postId } = useParams<ParamsData>();
   const [postActive, setPostActive] = useState<PostData>();
   const [userActive, setUserActive] = useState<UserData>();
@@ -69,7 +69,7 @@ const PostPage: React.FC = () => {
     <Container>
       <Header />
       <Main>
-        {loading ? (
+        {loading || isPostLoading || isUserLoading ? (
           <Loading />
         ) : (
           <>

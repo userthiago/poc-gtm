@@ -1,7 +1,6 @@
-import React, { useState } from 'react';
+import React from 'react';
 
 import ResumedPost from '../ResumedPost';
-import Loading from '../Loading';
 
 import { usePostsContext } from '../../hooks/PostsHook';
 import { useUsersContext } from '../../hooks/UsersHook';

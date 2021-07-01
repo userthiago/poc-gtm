@@ -10,6 +10,7 @@ export interface PostData {
 
 export interface PostsContextData {
   posts: Array<PostData>;
+  isPostLoading: boolean;
   paginatedPosts: Array<PostData>;
   postsPerPage: number;
   currentPage: number;
@@ -24,6 +25,7 @@ export const PostsContextProvider: React.FC = ({ children, ...props }) => {
   const [posts, setPosts] = useState<Array<PostData>>([]);
   const [currentPage, setCurrentPage] = useState(1);
   const [postsPerPage] = useState(10);
+  const [isPostLoading, setPostLoading] = useState(false);
   const indexOfLastPost = currentPage * postsPerPage;
   const indexOfFirstPost = indexOfLastPost - postsPerPage;
   const paginatedPosts = posts.slice(indexOfFirstPost, indexOfLastPost);
@@ -42,11 +44,13 @@ export const PostsContextProvider: React.FC = ({ children, ...props }) => {
 
   useEffect(() => {
     const loadData = async () => {
+      setPostLoading(true);
       const postsFromApi = await axios
         .get<Array<PostData>>('https://jsonplaceholder.typicode.com/posts')
         .then(postsRes => postsRes.data);
 
       setPosts(postsFromApi);
+      setPostLoading(false);
     };
 
     loadData();
@@ -56,6 +60,7 @@ export const PostsContextProvider: React.FC = ({ children, ...props }) => {
     <PostsContext.Provider
       value={{
         posts,
+        isPostLoading,
         postsPerPage,
         currentPage,
         handleGetPost,

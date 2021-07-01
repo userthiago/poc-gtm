@@ -9,6 +9,8 @@ import Main from '../../components/Main';
 import { Container, Navigation, CommentsContainer } from './styles';
 import Loading from '../../components/Loading';
 import Comment from '../../components/Comment';
+import { useUsersContext } from '../../hooks/UsersHook';
+import { usePostsContext } from '../../hooks/PostsHook';
 
 interface ParamsData {
   postId: string;
@@ -24,6 +26,8 @@ interface CommentsData {
 
 const CommentPage: React.FC = () => {
   const { postId } = useParams<ParamsData>();
+  const { isUserLoading } = useUsersContext();
+  const { isPostLoading } = usePostsContext();
   const [comments, setComments] = useState<Array<CommentsData>>();
   const [loading, setLoading] = useState(false);
 
@@ -47,7 +51,7 @@ const CommentPage: React.FC = () => {
     <Container>
       <Header />
       <Main>
-        {loading ? (
+        {loading || isUserLoading || isPostLoading ? (
           <Loading />
         ) : (
           <>
