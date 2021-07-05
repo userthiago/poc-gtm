@@ -27,7 +27,7 @@ export const CommentContainer = styled.li`
         position: absolute;
         right: -0.75rem;
 
-        background: var(--purple);
+        background: var(--purple-dark);
         width: 1rem;
         height: 1rem;
         border-radius: 50%;
