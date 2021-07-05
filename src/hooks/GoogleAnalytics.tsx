@@ -1,7 +1,7 @@
 import { useEffect } from 'react';
 import { useLocation } from 'react-router-dom';
 import ReactGA from 'react-ga';
-import { GA_TRACKING_ID } from '../../helpers/consts';
+import { GA_TRACKING_ID } from '../helpers/consts';
 
 declare global {
   interface Window {
