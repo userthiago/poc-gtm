@@ -19,5 +19,7 @@ export function usePageViews(): void {
     }
     ReactGA.set({ page: location.pathname });
     ReactGA.pageview(location.pathname);
+
+    ReactGA.modalview(`${location.pathname}/modal`);
   }, [location]);
 }
