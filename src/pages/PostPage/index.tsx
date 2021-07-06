@@ -16,6 +16,7 @@ import { PostData } from '../../context/PostsContext';
 import { UserData } from '../../context/UsersContext';
 
 import { Container, PostContainer, CommentsContainer } from './styles';
+import useGAEventsTracker from '../../hooks/useGAEventsTracker';
 
 interface ParamsData {
   postId: string;
@@ -39,6 +40,7 @@ const PostPage: React.FC = () => {
   const [comments, setComments] = useState<Array<CommentsData>>();
   const [loading, setLoading] = useState(false);
   const maxViewComments = 2;
+  const trackEvent = useGAEventsTracker('Comentários');
 
   useEffect(() => {
     setLoading(true);
@@ -107,6 +109,14 @@ const PostPage: React.FC = () => {
                 <Link
                   id="show-more-comments"
                   to={`${location.pathname}/comments`}
+                  onClick={
+                    () =>
+                      trackEvent(
+                        'Botão de Comentários',
+                        'Cliente visualizou mais comentários',
+                      )
+                    // eslint-disable-next-line react/jsx-curly-newline
+                  }
                 >
                   Show all comments
                 </Link>
